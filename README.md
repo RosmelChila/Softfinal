@@ -11,7 +11,7 @@ INTEGRANTES
 INSTALACION
 - Clona el repositorio en tu máquina local
   ```
-  git clone
+  git clone https://github.com/RosmelChila/Softfinal.git
   ```
 
 - Instala las dependencias composer & npm
