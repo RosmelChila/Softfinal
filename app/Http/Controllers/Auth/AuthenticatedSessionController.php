@@ -32,18 +32,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-
-        $consulta = User::select('*')->get()->toArray();
+        $email = request()->input('email');
+        $consulta = User::select('rol')->where('email', '=', $email )->get()->toArray();
         $request->authenticate();
 
         $request->session()->regenerate();
-        
-        if($consulta[0]['rol'] === 1){
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }elseif($consulta[0]['rol'] === 2){
-            return redirect()->intended(RouteServiceProvider::HOME1);
-        }
 
+        if($consulta[0]['rol']=== 1){
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }elseif($consulta[0]['rol']=== 2){
+            return redirect()->intended(RouteServiceProvider::HOME1);
+        }else{
+            return redirect()->intended(RouteServiceProvider::HOME2);
+        }
     }
 
     /**
