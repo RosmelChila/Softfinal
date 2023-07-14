@@ -45,10 +45,20 @@ class RegisteredUserController extends Controller
             'rol'=> $request->rol
         ]);
 
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        $rol = $request->get('rol');
+
+        if($rol==='1'){
+            return redirect(RouteServiceProvider::HOME);
+        }
+        if($rol==='2'){
+            return redirect(RouteServiceProvider::HOME1);
+        }else{
+            return redirect(RouteServiceProvider::HOME2);
+        }
     }
 }

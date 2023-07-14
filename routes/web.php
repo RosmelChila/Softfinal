@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\EstudianteController;
 use App\Models\User;
 
 use App\Http\Controllers\UserController;
@@ -14,6 +16,9 @@ use Inertia\Inertia;
 
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\SocialController;
+use App\Models\Docente;
+use App\Models\Estudiante;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +40,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('Docente/dashboard', [DocenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('Estudiante/dashboard', [EstudianteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/about', fn () => Inertia::render('About'))->name('about');

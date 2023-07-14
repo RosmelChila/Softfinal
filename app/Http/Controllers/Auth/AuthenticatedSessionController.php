@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
 
+use App\Models\User;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -30,11 +32,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
+        $consulta = User::select('*')->get()->toArray();
         $request->authenticate();
 
         $request->session()->regenerate();
+        
+        if($consulta[0]['rol'] === 1){
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }elseif($consulta[0]['rol'] === 2){
+            return redirect()->intended(RouteServiceProvider::HOME1);
+        }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
