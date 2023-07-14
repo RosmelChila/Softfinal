@@ -1,11 +1,19 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Models\User;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\SocialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +34,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
@@ -41,3 +47,32 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+//routing para iniciar con google y facebook
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/google-callback', function () {
+    $user = Socialite::driver('google')->user();
+    $userExists = User::where('external_id', $user->id)->where('external_auth', 'google')->first();
+    if($userExists){
+        Auth::login($userExists);
+    }else {
+        $userNew = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'google',            
+        ]);
+        Auth::login($userNew);
+    }
+    // $user->token
+    return redirect('/dashboard');
+});
+ 
+Route::get('auth/facebook', [SocialController::class, 'redirectFacebook']);
+Route::get('auth/facebook/callback', [SocialController::class, 'callbackFacebook']); 

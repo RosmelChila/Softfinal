@@ -26,18 +26,32 @@
             <div class="mt-4 flex justify-between">
                 <label class="inline-flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="mx-2 text-sm text-gray-600">Remember me</span> </label>
+                    <span class="mx-2 text-sm text-gray-600">Recordar contraseña</span> </label>
 
                 <Link v-if="canResetPassword" :href="route('password.request')" class="text-sm text-gray-600 underline hover:text-gray-900">
-                    Forgot your password?
+                    ¿Olvidaste tu contraseña?
                 </Link>
             </div>
 
             <div class="mt-6">
                 <PrimaryButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    Iniciar Sesión
                 </PrimaryButton>
             </div>
+            <br>
+            <h4 style="text-align: center;">OR</h4>
+            <div class="mt-4">
+                <ButtonSocial class="w-full">
+                    <a href="/login-google">Iniciar con Google</a>
+                </ButtonSocial>
+            </div>
+
+            <div class="mt-4">
+                <ButtonSocial class="w-full">
+                    <a href="/auth/facebook">Iniciar con Facebook</a>
+                </ButtonSocial>
+            </div>
+
         </form>
     </GuestLayout>
 </template>
@@ -51,6 +65,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import ButtonSocial from '@/Components/ButtonSocial.vue';
 
 defineProps({
     canResetPassword: Boolean,
