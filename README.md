@@ -35,7 +35,7 @@ INSTALACION
   FACEBOOK_CLIENT_SECRET=c8a2f799f51919b4299d87d3c28e2767
   FACEBOOK_REDIRECT_URI=https://127.0.0.1:8000/auth/facebook/callback
 
-  - Genera una nueva clave de aplicación
+- Genera una nueva clave de aplicación
   ```
   php artisan key:generate
   ```
