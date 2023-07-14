@@ -10,24 +10,40 @@ INTEGRANTES
 
 INSTALACION
 - Clona el repositorio en tu máquina local
+  ```
   git clone
+  ```
 
 - Instala las dependencias composer & npm
+  ```
   composer install
+  ```
+  ```
   npm install
+  ```
 
 - Crea un nuevo archivo .env
+  ```
   cp .env.example .env
+  ```
   
 - Genera una nueva clave de aplicación
+  ```
   php artisan key:generate
+  ```
 
 - Migracion
+  ```
   php artisan migrate
+  ```
 
 - Inicializacion
+  ```
   php artisan serve
+  ```
+  ```
   npm run dev
+  ```
 
 LOGIN 
 - administrador
