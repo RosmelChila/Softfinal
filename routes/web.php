@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
@@ -40,8 +41,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('Docente/dashboard', [DocenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('Estudiante/dashboard', [EstudianteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('Docente/dashboard', [DocenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard.docente');
+Route::get('Estudiante/dashboard', [EstudianteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard.estudiante');
 
 Route::middleware('auth')->group(function () {
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
@@ -51,6 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //para docentes
+    Route::get('/curso', [CursoController::class, 'index'])->name('curso.index');
 });
 
 require __DIR__.'/auth.php';

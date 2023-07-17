@@ -3,7 +3,7 @@
 
     <AuthenticatedLayout>
         <template #header>
-            Dashboard Docente asfjhf
+            cursos
         </template>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,6 +15,6 @@
 </template>
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/Docente/AuthenticatedLayout.vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { Head } from '@inertiajs/vue3';
 </script>
