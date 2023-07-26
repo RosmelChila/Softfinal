@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\CursoController;
+use App\Http\Controllers\Docente\CursoController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Docente\TareaController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Models\User;
@@ -55,6 +56,16 @@ Route::middleware('auth')->group(function () {
 
     //para docentes
     Route::get('/curso', [CursoController::class, 'index'])->name('curso.index');
+    Route::get('/tarea/create', [CursoController::class, 'tareacreate'])->name('tarea.create');
+    Route::get('/cursos/{curso}', [CursoController::class, 'show'])->name('curso.show');
+
+    //agregar tareas docente
+    // Route::get('/tarea/create', [TareaController::class, 'create'])->name('tarea.create');
+    Route::post('/tarea', [TareaController::class, 'store'])->name('tarea.store');
+    Route::get('/tarea/{id}/edit', [TareaController::class, 'edit'])->name('tarea.edit');
+    Route::put('/tarea/{id}', [TareaController::class, 'update'])->name('tarea.update');
+    Route::delete('/tarea/{id}', [TareaController::class, 'destroy'])->name('tarea.destroy');
+
 });
 
 require __DIR__.'/auth.php';

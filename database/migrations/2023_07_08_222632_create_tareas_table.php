@@ -16,9 +16,14 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->string('archivo')->nullable();
-            $table->decimal('nota_maxima', 2, 2);
+            $table->decimal('nota_maxima');
             $table->integer('num_intentos');
             $table->date('fecha_vencimiento');
+
+            $table->unsignedBigInteger('curso_id');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+
+
             $table->timestamps();
         });
     }

@@ -28,6 +28,14 @@ class User extends Authenticatable
         'rol',
     ];
 
+
+    public function administradores(){
+        return $this->hasMany(Admin::class);
+    }
+    public function docente(){
+        return $this->hasMany(Docente::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
