@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Docente\CursoController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Administrador\UsuarioController;
 use App\Http\Controllers\Docente\TareaController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\Estudiante\CursoestController;
@@ -73,6 +74,9 @@ Route::middleware('auth')->group(function () {
     //para estudiantes 
     Route::get('/cursoest', [CursoestController::class, 'index'])->name('cursoest.index');
     Route::get('/tareaest', [TareaestController::class, 'index'])->name('tareaest.index');
+
+    //para administrador 
+    Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuario.index');
 
 
 
