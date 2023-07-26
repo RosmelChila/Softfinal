@@ -4,6 +4,8 @@ use App\Http\Controllers\Docente\CursoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Docente\TareaController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\Estudiante\CursoestController;
+use App\Http\Controllers\Estudiante\TareaestController;
 use App\Http\Controllers\EstudianteController;
 use App\Models\User;
 
@@ -65,6 +67,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/tarea/{id}/edit', [TareaController::class, 'edit'])->name('tarea.edit');
     Route::put('/tarea/{id}', [TareaController::class, 'update'])->name('tarea.update');
     Route::delete('/tarea/{id}', [TareaController::class, 'destroy'])->name('tarea.destroy');
+
+
+
+    //para estudiantes 
+    Route::get('/cursoest', [CursoestController::class, 'index'])->name('cursoest.index');
+    Route::get('/tareaest', [TareaestController::class, 'index'])->name('tareaest.index');
+
+
+
 
 });
 

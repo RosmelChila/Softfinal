@@ -29,7 +29,7 @@ class CursoController extends Controller
         ]);
     }   
     
-    public function tareacreate(){
+    public function tareacreate(){  
         return inertia('Docente/Tarea/Create');
    }
 }
